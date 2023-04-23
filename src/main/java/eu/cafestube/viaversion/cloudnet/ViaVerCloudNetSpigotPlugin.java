@@ -7,6 +7,7 @@ import eu.cloudnetservice.ext.platforminject.api.PlatformEntrypoint;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.Dependency;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.PlatformPlugin;
 import eu.cloudnetservice.wrapper.event.ServiceInfoSnapshotConfigureEvent;
+import eu.cloudnetservice.wrapper.holder.ServiceInfoHolder;
 import org.bukkit.Bukkit;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -21,9 +22,11 @@ public class ViaVerCloudNetSpigotPlugin implements PlatformEntrypoint {
 
     @Inject
     public ViaVerCloudNetSpigotPlugin(
-            @NonNull EventManager eventManager
+            @NonNull EventManager eventManager,
+            ServiceInfoHolder holder
     ) {
         eventManager.registerListener(this);
+        holder.publishServiceInfoUpdate();
     }
 
     @EventListener

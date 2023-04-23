@@ -10,11 +10,16 @@ import eu.cloudnetservice.driver.event.EventListener;
 import eu.cloudnetservice.driver.event.EventManager;
 import eu.cloudnetservice.driver.event.events.service.CloudServiceLifecycleChangeEvent;
 import eu.cloudnetservice.driver.event.events.service.CloudServiceUpdateEvent;
+import eu.cloudnetservice.driver.provider.CloudServiceProvider;
+import eu.cloudnetservice.driver.service.ServiceInfoSnapshot;
 import eu.cloudnetservice.driver.service.ServiceLifeCycle;
 import eu.cloudnetservice.ext.platforminject.api.PlatformEntrypoint;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.Dependency;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.PlatformPlugin;
 import eu.cloudnetservice.wrapper.holder.ServiceInfoHolder;
+
+import java.util.Collection;
+import java.util.function.Consumer;
 
 @PlatformPlugin(
         platform = "velocity",
@@ -30,10 +35,16 @@ public class ViaVerCloudNetProxyPlugin implements PlatformEntrypoint {
     private final EventManager eventManager;
 
     @Inject
-    public ViaVerCloudNetProxyPlugin(EventManager eventManager, ServiceInfoHolder holder) {
+    public ViaVerCloudNetProxyPlugin(EventManager eventManager, CloudServiceProvider provider) {
         this.eventManager = eventManager;
 
-        holder.publishServiceInfoUpdate();
+        provider.runningServicesAsync().thenAccept(serviceInfoSnapshots -> {
+            serviceInfoSnapshots.forEach(serviceInfoSnapshot -> {
+                if (serviceInfoSnapshot.propertyAbsent(PROTOCOL_VERSION)) return;
+
+                getProtocolDetectorService().setProtocolVersion(serviceInfoSnapshot.name(), serviceInfoSnapshot.readProperty(PROTOCOL_VERSION));
+            });
+        });
     }
 
     @Override
