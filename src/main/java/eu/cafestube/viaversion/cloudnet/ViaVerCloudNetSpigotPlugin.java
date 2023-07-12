@@ -6,7 +6,7 @@ import eu.cloudnetservice.driver.event.EventManager;
 import eu.cloudnetservice.ext.platforminject.api.PlatformEntrypoint;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.Dependency;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.PlatformPlugin;
-import eu.cloudnetservice.wrapper.event.ServiceInfoSnapshotConfigureEvent;
+import eu.cloudnetservice.wrapper.event.ServiceInfoPropertiesConfigureEvent;
 import eu.cloudnetservice.wrapper.holder.ServiceInfoHolder;
 import org.bukkit.Bukkit;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -30,9 +30,9 @@ public class ViaVerCloudNetSpigotPlugin implements PlatformEntrypoint {
     }
 
     @EventListener
-    public void onProperty(ServiceInfoSnapshotConfigureEvent event) {
+    public void onProperty(ServiceInfoPropertiesConfigureEvent event) {
         //noinspection deprecation
-        event.serviceInfo().propertyHolder()
+        event.propertyHolder()
                 .append("protocolVersion", Bukkit.getUnsafe().getProtocolVersion());
     }
 

@@ -17,14 +17,14 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     // https://mvnrepository.com/artifact/eu.cloudnetservice.cloudnet/bom
-    compileOnly("eu.cloudnetservice.cloudnet:wrapper-jvm:4.0.0-RC8")
-    compileOnly("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC8")
+    compileOnly("eu.cloudnetservice.cloudnet:wrapper-jvm:4.0.0-RC9")
+    compileOnly("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC9")
 
     compileOnly("com.viaversion:viaversion-api:4.6.3-SNAPSHOT")
 
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
     compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
-    compileOnly("com.github.Minestom:Minestom:8ad2c7701f")
+    compileOnly("com.github.Minestom:Minestom:-SNAPSHOT")
 
 
     annotationProcessor("eu.cloudnetservice.cloudnet:platform-inject-processor:4.0.0-RC8")

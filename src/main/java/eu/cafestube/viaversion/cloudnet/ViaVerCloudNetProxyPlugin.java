@@ -5,21 +5,16 @@ import com.viaversion.viaversion.api.Via;
 import com.viaversion.viaversion.api.platform.ProtocolDetectorService;
 import com.viaversion.viaversion.api.platform.ViaServerProxyPlatform;
 import dev.derklaro.aerogel.Inject;
-import eu.cloudnetservice.common.document.property.DocProperty;
+import eu.cloudnetservice.driver.document.property.DocProperty;
 import eu.cloudnetservice.driver.event.EventListener;
 import eu.cloudnetservice.driver.event.EventManager;
 import eu.cloudnetservice.driver.event.events.service.CloudServiceLifecycleChangeEvent;
 import eu.cloudnetservice.driver.event.events.service.CloudServiceUpdateEvent;
 import eu.cloudnetservice.driver.provider.CloudServiceProvider;
-import eu.cloudnetservice.driver.service.ServiceInfoSnapshot;
 import eu.cloudnetservice.driver.service.ServiceLifeCycle;
 import eu.cloudnetservice.ext.platforminject.api.PlatformEntrypoint;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.Dependency;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.PlatformPlugin;
-import eu.cloudnetservice.wrapper.holder.ServiceInfoHolder;
-
-import java.util.Collection;
-import java.util.function.Consumer;
 
 @PlatformPlugin(
         platform = "velocity",
