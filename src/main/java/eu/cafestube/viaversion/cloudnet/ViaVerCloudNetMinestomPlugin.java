@@ -4,12 +4,10 @@ import dev.derklaro.aerogel.Inject;
 import eu.cloudnetservice.driver.event.EventListener;
 import eu.cloudnetservice.driver.event.EventManager;
 import eu.cloudnetservice.ext.platforminject.api.PlatformEntrypoint;
-import eu.cloudnetservice.ext.platforminject.api.stereotype.Dependency;
 import eu.cloudnetservice.ext.platforminject.api.stereotype.PlatformPlugin;
-import eu.cloudnetservice.wrapper.event.ServiceInfoSnapshotConfigureEvent;
+import eu.cloudnetservice.wrapper.event.ServiceInfoPropertiesConfigureEvent;
 import eu.cloudnetservice.wrapper.holder.ServiceInfoHolder;
 import net.minestom.server.MinecraftServer;
-import org.bukkit.Bukkit;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 @PlatformPlugin(
@@ -39,10 +37,8 @@ public class ViaVerCloudNetMinestomPlugin implements PlatformEntrypoint {
     }
 
     @EventListener
-    public void onProperty(ServiceInfoSnapshotConfigureEvent event) {
-        //noinspection deprecation
-        event.serviceInfo().propertyHolder()
-                .append("protocolVersion", protocolVersion);
+    public void onProperty(ServiceInfoPropertiesConfigureEvent event) {
+        event.propertyHolder().append("protocolVersion", protocolVersion);
     }
 
 }
